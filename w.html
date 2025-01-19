@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Detection App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .weather-app {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="weather-app">
+        <h1>Weather Detection App</h1>
+        <input type="text" id="weatherInput" placeholder="Enter weather condition...">
+        <button onclick="checkWeather()">Check Weather</button>
+        <p class="message" id="weatherMessage"></p>
+    </div>
+
+    <script>
+        function checkWeather() {
+            const input = document.getElementById('weatherInput').value.toLowerCase();
+            const message = document.getElementById('weatherMessage');
+
+            if (input === 'sunny') {
+                message.textContent = "It’s sunny! Wear sunglasses and apply sunscreen.";
+            } else if (input === 'rainy') {
+                message.textContent = "It’s rainy! Don’t forget your umbrella.";
+            } else if (input === 'cloudy') {
+                message.textContent = "It’s cloudy! You might want to carry a light jacket.";
+            } else if (input === 'snowy') {
+                message.textContent = "It’s snowy! Dress warmly and stay safe.";
+            } else {
+                message.textContent = "Sorry, I don’t recognize that weather condition.";
+            }
+        }
+    </script>
+</body>
+</html>
