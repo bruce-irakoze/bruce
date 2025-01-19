@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit Basket Counter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            color: #333;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            width: 70%;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        button.add {
+            background-color: #4caf50;
+        }
+        button.add:hover {
+            background-color: #45a049;
+        }
+        button.remove {
+            background-color: #f44336;
+        }
+        button.remove:hover {
+            background-color: #d32f2f;
+        }
+        .basket {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .basket ul {
+            list-style: none;
+            padding: 0;
+        }
+        .basket li {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+        .basket li img {
+            width: 30px;
+            margin-right: 10px;
+        }
+        .total {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fruit Basket Counter</h1>
+        <div class="buttons">
+            <input type="text" id="fruitInput" placeholder="Enter fruit name">
+            <button class="add" id="addFruit">Add Fruit</button>
+            <button class="remove" id="removeFruit">Remove Fruit</button>
+        </div>
+        <div class="basket">
+            <h2>Fruits in Basket:</h2>
+            <ul id="fruitBasket"></ul>
+        </div>
+        <div class="total">
+            <h2>Total Fruits: <span id="totalFruits">0</span></h2>
+        </div>
+    </div>
+
+    <script>
+        const fruitInput = document.getElementById('fruitInput');
+        const addFruitBtn = document.getElementById('addFruit');
+        const removeFruitBtn = document.getElementById('removeFruit');
+        const fruitBasket = document.getElementById('fruitBasket');
+        const totalFruits = document.getElementById('totalFruits');
+
+        let fruits = [];
+
+        function updateBasket() {
+            fruitBasket.innerHTML = '';
+            fruits.forEach(fruit => {
+                const li = document.createElement('li');
+                li.innerHTML = `<img src="fruit.avif" alt="${fruit}">${fruit}`;
+                fruitBasket.appendChild(li);
+            });
+            totalFruits.textContent = fruits.length;
+        }
+
+        addFruitBtn.addEventListener('click', () => {
+            const fruit = fruitInput.value.trim();
+            if (fruit) {
+                fruits.push(fruit);
+                fruitInput.value = '';
+                updateBasket();
+            }
+        });
+
+        removeFruitBtn.addEventListener('click', () => {
+            const fruit = fruitInput.value.trim();
+            if (fruit) {
+                const index = fruits.indexOf(fruit);
+                if (index !== -1) {
+                    fruits.splice(index, 1);
+                    updateBasket();
+                } else {
+                    alert(`${fruit} is not in the basket.`);
+                }
+                fruitInput.value = '';
+            }
+        });
+    </script>
+</body>
+</html>
